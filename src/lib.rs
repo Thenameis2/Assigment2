@@ -277,3 +277,4 @@ where
 }
 
 mod test;
+mod staticlist;

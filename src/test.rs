@@ -2,6 +2,7 @@
 mod tests {
    
     use crate::DynamicLinkedList;
+    use crate::staticlist::StaticLinkedList;
 
     #[test]
     fn dynamic_list_insert() {
@@ -170,6 +171,31 @@ mod tests {
         // Element does not exist
         assert!(!list.find(100)); 
         assert!(!list.find(0)); 
+    }
+
+    #[test]
+    fn test_insert() {
+        let mut list = StaticLinkedList::<i32>::new();
+        
+        list.insert(10);
+        list.insert(20);
+        list.insert(30);
+
+        assert_eq!(list.len(), 3);
+        
+        // Check head data
+        assert_eq!(list.nodes[list.head.unwrap()].data, 10);
+
+        // Traverse and collect elements
+        let mut result = Vec::new();
+        let mut current = list.head;
+        
+        while let Some(index) = current {
+            result.push(list.nodes[index].data);
+            current = list.nodes[index].next;
+        }
+
+        assert_eq!(result, vec![10, 20, 30]);
     }
 
 
