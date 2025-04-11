@@ -263,7 +263,17 @@ where
 
    
     pub fn get(&self, index: usize) -> Option<T> {
-        todo!("Not Implemented");
+        if index >= self.size {
+            return None;  
+        }
+        
+        let mut current = self.head;
+        
+        for _ in 0..index {
+            current = self.nodes[current.unwrap()].next;
+        }
+        
+        current.map(|idx| self.nodes[idx].data.clone())
     }
     
   
