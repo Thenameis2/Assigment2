@@ -277,6 +277,44 @@ mod tests {
         assert_eq!(list.delete_element(100), false);
     }
 
+    #[test]
+    fn test_delete_at_index() {
+        let mut list = StaticLinkedList::<i32>::new();
+
+        list.insert(10);
+        list.insert(20);
+        list.insert(30);
+        list.insert(40);
+
+        // Delete at index 1 (Expected list: 10 -> 30 -> 40)
+        let deleted = list.delete_at_index(1);
+        assert!(deleted);
+        assert_eq!(list.len(), 3);
+
+        let mut result = Vec::new();
+        let mut current = list.head;
+        while let Some(index) = current {
+            result.push(list.nodes[index].data);
+            current = list.nodes[index].next;
+        }
+
+        assert_eq!(result, vec![10, 30, 40]);
+
+        // Delete at index 0 (Expected list: 30 -> 40)
+        let deleted = list.delete_at_index(0);
+        assert!(deleted);
+        assert_eq!(list.len(), 2);
+
+        let mut result2 = Vec::new();
+        let mut current2 = list.head;
+        while let Some(index) = current2 {
+            result2.push(list.nodes[index].data);
+            current2 = list.nodes[index].next;
+        }
+
+        assert_eq!(result2, vec![30, 40]);
+    }
+
 
 
 
