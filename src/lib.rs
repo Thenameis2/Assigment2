@@ -27,6 +27,14 @@ where
         }
     }
     
+    /// Inserts a new element at the end of the `DynamicLinkedList`.
+    ///
+    /// This method traverses the list and appends the new element at the tail.
+    ///
+    /// # Arguments
+    ///
+    /// * `data` - The value to insert into the linked list.
+    ///
     pub fn insert(&mut self, data: T) {
         let new_node = Box::new(Node {
             data,
