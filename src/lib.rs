@@ -155,6 +155,17 @@ where
         false
     }
 
+    /// Updates the first occurrence of `old_data` with `new_data` in the linked list.
+    /// 
+    /// # Parameters
+    /// - `old_data`: The data to be replaced in the list.
+    /// - `new_data`: The data that will replace the `old_data`.
+    ///
+    /// # Returns
+    /// - `true` if the `old_data` was found and updated with `new_data`.
+    /// - `false` if the `old_data` was not found in the list.
+    ///
+
     pub fn update_element(&mut self, old_data: T, new_data: T) -> bool {
         let mut current = &mut self.head;
 
