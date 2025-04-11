@@ -210,6 +210,17 @@ where
         false
     }
 
+    /// Searches for an element in the `DynamicLinkedList`.
+    ///
+    /// # Arguments
+    ///
+    /// * `data` - The value to search for in the linked list.
+    ///
+    /// # Returns
+    ///
+    /// * `true` if the element exists in the list.
+    /// * `false` if the element is not found.
+
     pub fn find(&self, data: T) -> bool {
         let mut current = &self.head;
 
