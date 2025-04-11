@@ -112,6 +112,26 @@ mod tests {
         assert!(list.is_empty());
     }
 
+    #[test]
+    fn dynamic_list_update_element() {
+        let mut list = DynamicLinkedList::new();
+        
+        // Insert elements into the list
+        list.insert(5);
+        list.insert(10);
+        list.insert(15);
+
+        // Test updating an element that exists
+        assert_eq!(list.update_element(10, 20), true); // Successfully update 10 to 20
+        assert_eq!(list.get(1), Some(20)); // Verify the update at index 1
+
+        // Test updating an element that does not exist
+        assert_eq!(list.update_element(30, 40), false); // Element not found
+
+        // Verify that the list size is unchanged after a failed update
+        assert_eq!(list.len(), 3); // The size should still be 3
+    }
+
 
 
 
