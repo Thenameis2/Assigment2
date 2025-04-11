@@ -181,7 +181,23 @@ where
     }
 
     pub fn update_element_at_index(&mut self, index: usize, data: T) -> bool {
-        todo!("Not Implemented");
+        if index >= self.size {
+            return false; 
+        }
+    
+        let mut current = &mut self.head;
+        let mut current_index = 0;
+    
+        while let Some(node) = current {
+            if current_index == index {
+                node.data = data; 
+                return true;
+            }
+            current = &mut node.next;
+            current_index += 1;
+        }
+    
+        false
     }
 
     pub fn find(&self, data: T) -> bool {
