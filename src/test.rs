@@ -234,6 +234,50 @@ mod tests {
         assert_eq!(result2, vec![5, 10, 15, 20, 30]);
     }
 
+    #[test]
+    fn test_delete_element() {
+        let mut list = StaticLinkedList::<i32>::new();
+
+        list.insert(10);
+        list.insert(20);
+        list.insert(30);
+        list.insert(40);
+
+        assert_eq!(list.len(), 4);
+
+        // Delete middle element
+        assert!(list.delete_element(20));
+        assert_eq!(list.len(), 3);
+
+        let mut result = Vec::new();
+        let mut current = list.head;
+        
+        while let Some(index) = current {
+            result.push(list.nodes[index].data);
+            current = list.nodes[index].next;
+        }
+
+        assert_eq!(result, vec![10, 30, 40]);
+
+        // Delete head element
+        assert!(list.delete_element(10));
+        assert_eq!(list.len(), 2);
+
+        let mut result2 = Vec::new();
+        let mut current2 = list.head;
+        
+        while let Some(index) = current2 {
+            result2.push(list.nodes[index].data);
+            current2 = list.nodes[index].next;
+        }
+
+        assert_eq!(result2, vec![30, 40]);
+
+        // Delete non-existing element
+        assert_eq!(list.delete_element(100), false);
+    }
+
+
 
 
 
