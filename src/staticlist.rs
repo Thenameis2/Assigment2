@@ -87,6 +87,13 @@ where
     }
 
    
+    /// Inserts a new element at a specific index in the linked list.
+    ///
+    /// # Arguments
+    ///
+    /// * `index` - The position where the new element should be inserted (0-based).
+    /// * `data` - The data to insert into the list.
+
     pub fn insert_at_index(&mut self, index: usize, data: T) {
         if self.free_list.is_none() {
             panic!("StaticLinkedList is full, cannot insert more elements");
