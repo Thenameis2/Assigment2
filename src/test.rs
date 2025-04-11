@@ -133,6 +133,26 @@ mod tests {
     }
 
 
+    #[test]
+    fn test_update_element_at_index() {
+        let mut list = DynamicLinkedList::new();
+        
+        // Insert elements into the linked list
+        list.insert(10);
+        list.insert(20);
+        list.insert(30);
+        
+        // Test updating an element at a valid index
+        assert!(list.update_element_at_index(1, 25)); // Update element at index 1
+        assert_eq!(list.get(1), Some(25)); // Verify the update
+        
+        // Test updating an element at an invalid index
+        assert!(!list.update_element_at_index(5, 15)); // Index 5 is out of bounds
+        
+        // Ensure other elements are not changed
+        assert_eq!(list.get(0), Some(10));
+        assert_eq!(list.get(2), Some(30));
+    }
 
 
 }
