@@ -162,7 +162,16 @@ where
         false
     }
 
-   
+   /// Deletes the element at a specific index in the linked list.
+    ///
+    /// # Arguments
+    ///
+    /// * `index` - The position (0-based) of the element to delete.
+    ///
+    /// # Returns
+    ///
+    /// Returns `true` if the element was successfully deleted, otherwise `false`.
+    ///
     pub fn delete_at_index(&mut self, index: usize) -> bool {
         if index >= self.size {
             panic!("Index out of bounds");
