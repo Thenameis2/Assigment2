@@ -125,7 +125,15 @@ where
         self.size += 1;
     }
 
-    
+    /// Deletes the first occurrence of the given data from the linked list.
+    ///
+    /// # Arguments
+    ///
+    /// * `data` - The data to delete from the list.
+    ///
+    /// # Returns
+    ///
+    /// Returns `true` if the element was found and deleted, otherwise `false`.
     pub fn delete_element(&mut self, data: T) -> bool {
         let mut current = self.head;
         let mut prev: Option<usize> = None;
