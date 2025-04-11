@@ -70,6 +70,14 @@ where
         self.size += 1;
     }
 
+    /// Deletes the first occurrence of the specified `data` in the linked list.
+    /// # Parameters
+    /// - `data`: The value to be deleted from the list.
+    ///
+    /// # Returns
+    /// - `true` if the element was successfully deleted from the list.
+    /// - `false` if the element was not found in the list.
+
     pub fn delete_element(&mut self, data: T) -> bool {
         if self.head.is_none() {
             return false;
