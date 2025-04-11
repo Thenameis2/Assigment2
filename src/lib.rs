@@ -116,7 +116,34 @@ where
     }
 
     pub fn delete_at_index(&mut self, index: usize) -> bool {
-        todo!("Not Implemented");
+        if index >= self.size {
+            return false;
+        }
+
+        if index == 0 {
+            if let Some(mut head_node) = self.head.take() {
+                self.head = head_node.next.take();
+                self.size -= 1;
+            }
+            return true;
+        }
+
+        let mut current = &mut self.head;
+        for _ in 0..index - 1 {
+            if let Some(node) = current {
+                current = &mut node.next;
+            }
+        }
+
+        if let Some(node) = current {
+            if let Some(mut target_node) = node.next.take() {
+                node.next = target_node.next.take();
+                self.size -= 1;
+                return true;
+            }
+        }
+
+        false
     }
 
     pub fn update_element(&mut self, old_data: T, new_data: T) -> bool {
