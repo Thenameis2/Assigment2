@@ -206,7 +206,17 @@ where
 
    
     pub fn update_element(&mut self, old_data: T, new_data: T) -> bool {
-        todo!("Not Implemented");
+        let mut current = self.head;
+
+        while let Some(index) = current {
+            if self.nodes[index].data == old_data {
+                self.nodes[index].data = new_data;
+                return true;
+            }
+            current = self.nodes[index].next;
+        }
+
+        false
     }
 
   
