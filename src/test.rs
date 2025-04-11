@@ -197,6 +197,44 @@ mod tests {
         assert_eq!(result, vec![10, 20, 30]);
     }
 
+    #[test]
+    fn test_insert_at_index() {
+        let mut list = StaticLinkedList::<i32>::new();
+
+        list.insert(10);
+        list.insert(20);
+        list.insert(30);
+
+        // Insert 15 at index 1 -> Expected list: 10 -> 15 -> 20 -> 30
+        list.insert_at_index(1, 15);
+
+        assert_eq!(list.len(), 4);
+
+        let mut result = Vec::new();
+        let mut current = list.head;
+        
+        while let Some(index) = current {
+            result.push(list.nodes[index].data);
+            current = list.nodes[index].next;
+        }
+
+        assert_eq!(result, vec![10, 15, 20, 30]);
+
+        // Insert 5 at index 0 -> Expected list: 5 -> 10 -> 15 -> 20 -> 30
+        list.insert_at_index(0, 5);
+
+        let mut result2 = Vec::new();
+        let mut current2 = list.head;
+        
+        while let Some(index) = current2 {
+            result2.push(list.nodes[index].data);
+            current2 = list.nodes[index].next;
+        }
+
+        assert_eq!(result2, vec![5, 10, 15, 20, 30]);
+    }
+
+
 
 
 }
