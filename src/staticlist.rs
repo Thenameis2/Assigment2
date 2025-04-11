@@ -55,7 +55,31 @@ where
     
   
     pub fn insert(&mut self, data: T) {
-        todo!("Not Implemented");
+
+        if self.free_list.is_none() {
+            panic!("StaticLinkedList is full, cannot insert more elements");
+        }
+
+        
+        let new_index = self.free_list.unwrap();
+        self.free_list = self.nodes[new_index].next; 
+
+        self.nodes[new_index].data = data;
+        self.nodes[new_index].next = None;
+
+        
+        if self.head.is_none() {
+            self.head = Some(new_index);
+        } else {
+        
+            let mut current = self.head.unwrap();
+            while let Some(next_index) = self.nodes[current].next {
+                current = next_index;
+            }
+            self.nodes[current].next = Some(new_index);
+        }
+
+        self.size += 1;
     }
 
    
