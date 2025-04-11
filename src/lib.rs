@@ -43,6 +43,12 @@ where
         self.size += 1;
     }
 
+    /// Inserts a new element at a specified index in the `DynamicLinkedList`.
+    ///
+    /// # Arguments
+    ///
+    /// * `index` - The position at which the new element should be inserted.  
+    /// * `data` - The value to insert into the linked list.
     pub fn insert_at_index(&mut self, index: usize, data: T) {
         if index > self.size {
             panic!("Index out of bounds");
