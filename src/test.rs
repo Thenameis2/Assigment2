@@ -47,4 +47,32 @@ mod tests {
         assert_eq!(list.len(), 6);
     }
 
+    #[test]
+fn dynamic_list_delete_element() {
+    let mut list = DynamicLinkedList::new();
+
+    list.insert(1);
+    list.insert(2);
+    list.insert(3);
+    list.insert(4);
+    // List: 1 -> 2 -> 3 -> 4
+
+    assert_eq!(list.delete_element(3), true);
+    // List after deletion: 1 -> 2 -> 4
+    assert_eq!(list.get(0), Some(1));
+    assert_eq!(list.get(1), Some(2));
+    assert_eq!(list.get(2), Some(4));
+    assert_eq!(list.len(), 3);
+
+    assert_eq!(list.delete_element(1), true);
+    // List after deletion: 2 -> 4
+    assert_eq!(list.get(0), Some(2));
+    assert_eq!(list.get(1), Some(4));
+    assert_eq!(list.len(), 2);
+
+    assert_eq!(list.delete_element(100), false); // Element not in list
+    assert_eq!(list.len(), 2);
+}
+
+
 }
