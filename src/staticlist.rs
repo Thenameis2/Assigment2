@@ -221,7 +221,22 @@ where
 
   
     pub fn update_element_at_index(&mut self, index: usize, data: T) -> bool {
-        todo!("Not Implemented");
+        if index >= self.size {
+            return false; 
+        }
+    
+        let mut current = self.head;
+    
+        for _ in 0..index {
+            current = self.nodes[current.unwrap()].next;
+        }
+    
+        if let Some(index_to_update) = current {
+            self.nodes[index_to_update].data = data;
+            return true;
+        }
+    
+        false
     }
 
    

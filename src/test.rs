@@ -316,31 +316,61 @@ mod tests {
     }
 
     #[test]
-fn test_update_element() {
-    let mut list = StaticLinkedList::<i32>::new();
+    fn test_update_element() {
+        let mut list = StaticLinkedList::<i32>::new();
 
-    list.insert(10);
-    list.insert(20);
-    list.insert(30);
+        list.insert(10);
+        list.insert(20);
+        list.insert(30);
 
-    // Update 20 to 25
-    let updated = list.update_element(20, 25);
-    assert!(updated);
+        // Update 20 to 25
+        let updated = list.update_element(20, 25);
+        assert!(updated);
 
-    let mut result = Vec::new();
-    let mut current = list.head;
+        let mut result = Vec::new();
+        let mut current = list.head;
 
-    while let Some(index) = current {
-        result.push(list.nodes[index].data);
-        current = list.nodes[index].next;
+        while let Some(index) = current {
+            result.push(list.nodes[index].data);
+            current = list.nodes[index].next;
+        }
+
+        assert_eq!(result, vec![10, 25, 30]);
+
+        // Try to update a non-existing element
+        let updated_false = list.update_element(100, 200);
+        assert!(!updated_false);
     }
 
-    assert_eq!(result, vec![10, 25, 30]);
+    #[test]
+    fn teststatic_update_element_at_index() {
+        let mut list = StaticLinkedList::<i32>::new();
 
-    // Try to update a non-existing element
-    let updated_false = list.update_element(100, 200);
-    assert!(!updated_false);
-}
+        list.insert(10);
+        list.insert(20);
+        list.insert(30);
+
+        // Update element at index 1
+        let updated = list.update_element_at_index(1, 25);
+        assert!(updated);
+
+        let mut result = Vec::new();
+        let mut current = list.head;
+
+        while let Some(index) = current {
+            result.push(list.nodes[index].data);
+            current = list.nodes[index].next;
+        }
+
+        // Check that the element at index 1 is updated to 25
+        assert_eq!(result, vec![10, 25, 30]);
+
+        // Try updating an element at an out-of-bounds index
+        let updated_false = list.update_element_at_index(5, 50);
+        assert!(!updated_false);
+    }
+
+
 
 
 
