@@ -71,7 +71,40 @@ where
     }
 
     pub fn delete_element(&mut self, data: T) -> bool {
-        todo!("Not Implemented");
+        if self.head.is_none() {
+            return false;
+        }
+        
+        if let Some(head_node) = &self.head {
+            if head_node.data == data {
+                
+                let mut old_head = self.head.take().unwrap();
+                self.head = old_head.next.take();
+                self.size -= 1;
+                return true;
+            }
+        }
+        
+     
+        let mut current = &mut self.head;
+        
+        while let Some(node) = current {
+           
+            if let Some(next_node) = &node.next {
+                if next_node.data == data {
+                    
+                    let mut next = node.next.take().unwrap();
+                    node.next = next.next.take();
+                    self.size -= 1;
+                    return true;
+                }
+            }
+            
+            
+            current = &mut node.next;
+        }
+        
+        false
     }
 
     pub fn delete_at_index(&mut self, index: usize) -> bool {
