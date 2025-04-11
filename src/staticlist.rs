@@ -127,7 +127,31 @@ where
 
     
     pub fn delete_element(&mut self, data: T) -> bool {
-        todo!("Not Implemented");
+        let mut current = self.head;
+        let mut prev: Option<usize> = None;
+
+        while let Some(index) = current {
+            if self.nodes[index].data == data {
+                // Remove the node
+                if let Some(prev_index) = prev {
+                    self.nodes[prev_index].next = self.nodes[index].next;
+                } else {
+                    // Removing head
+                    self.head = self.nodes[index].next;
+                }
+
+                // Add removed node to free_list
+                self.nodes[index].next = self.free_list;
+                self.free_list = Some(index);
+
+                self.size -= 1;
+                return true;
+            }
+            prev = current;
+            current = self.nodes[index].next;
+        }
+
+        false
     }
 
    
