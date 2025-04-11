@@ -164,7 +164,35 @@ where
 
    
     pub fn delete_at_index(&mut self, index: usize) -> bool {
-        todo!("Not Implemented");
+        if index >= self.size {
+            panic!("Index out of bounds");
+        }
+    
+        let mut current = self.head;
+        let mut prev: Option<usize> = None;
+    
+        for _ in 0..index {
+            prev = current;
+            current = self.nodes[current.unwrap()].next;
+        }
+    
+        if let Some(delete_index) = current {
+            if let Some(prev_index) = prev {
+                self.nodes[prev_index].next = self.nodes[delete_index].next;
+            } else {
+                // Delete head
+                self.head = self.nodes[delete_index].next;
+            }
+    
+            // Add deleted node to free_list
+            self.nodes[delete_index].next = self.free_list;
+            self.free_list = Some(delete_index);
+    
+            self.size -= 1;
+            return true;
+        }
+    
+        false
     }
 
    
