@@ -44,7 +44,30 @@ where
     }
 
     pub fn insert_at_index(&mut self, index: usize, data: T) {
-        todo!("Not Implemented");
+        if index > self.size {
+            panic!("Index out of bounds");
+        }
+
+        let mut new_node = Box::new(Node { data, next: None });
+
+        if index == 0 {
+            new_node.next = self.head.take();
+            self.head = Some(new_node);
+        } else {
+            let mut current = &mut self.head;
+            for _ in 0..index - 1 {
+                if let Some(node) = current {
+                    current = &mut node.next;
+                }
+            }
+
+            if let Some(node) = current {
+                new_node.next = node.next.take();
+                node.next = Some(new_node);
+            }
+        }
+
+        self.size += 1;
     }
 
     pub fn delete_element(&mut self, data: T) -> bool {
