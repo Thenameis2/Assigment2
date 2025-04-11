@@ -115,6 +115,15 @@ where
         false
     }
 
+    /// Deletes the node at the specified `index` in the linked list.
+    ///
+    /// # Parameters
+    /// - `index`: The index of the node to be deleted.
+    ///
+    /// # Returns
+    /// - `true` if the node at the specified index was successfully deleted.
+    /// - `false` if the index is out of bounds or the node could not be deleted.
+    ///
     pub fn delete_at_index(&mut self, index: usize) -> bool {
         if index >= self.size {
             return false;
