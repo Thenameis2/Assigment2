@@ -183,10 +183,9 @@ mod tests {
 
         assert_eq!(list.len(), 3);
         
-        // Check head data
+      
         assert_eq!(list.nodes[list.head.unwrap()].data, 10);
 
-        // Traverse and collect elements
         let mut result = Vec::new();
         let mut current = list.head;
         
