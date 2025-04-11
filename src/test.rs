@@ -385,6 +385,24 @@ mod tests {
         assert!(!list.find(40));
     }
 
+    #[test]
+    fn test_get() {
+        let mut list = StaticLinkedList::<i32>::new();
+
+        list.insert(10);
+        list.insert(20);
+        list.insert(30);
+
+        // Test getting valid indices
+        assert_eq!(list.get(0), Some(10));
+        assert_eq!(list.get(1), Some(20));
+        assert_eq!(list.get(2), Some(30));
+
+        // Test getting an out-of-bounds index
+        assert_eq!(list.get(3), None);
+    }
+
+
 
 
 
