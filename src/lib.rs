@@ -67,3 +67,5 @@ where
         self.size == 0
     }
 }
+
+mod test;
