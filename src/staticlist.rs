@@ -239,7 +239,15 @@ where
         false
     }
 
-   
+   /// Finds the first occurrence of `data` in the linked list.
+    ///
+    /// # Arguments
+    ///
+    /// * `data` - The data to search for.
+    ///
+    /// # Returns
+    ///
+    /// Returns `true` if the element is found, otherwise `false`.
     pub fn find(&self, data: T) -> bool {
         let mut current = self.head;
 
