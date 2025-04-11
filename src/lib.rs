@@ -28,7 +28,19 @@ where
     }
     
     pub fn insert(&mut self, data: T) {
-        todo!("Not Implemented");
+        let new_node = Box::new(Node {
+            data,
+            next: None,
+        });
+    
+        let mut current = &mut self.head;
+    
+        while let Some(node) = current {
+            current = &mut node.next;
+        }
+    
+        *current = Some(new_node);
+        self.size += 1;
     }
 
     pub fn insert_at_index(&mut self, index: usize, data: T) {
@@ -56,7 +68,22 @@ where
     }
 
     pub fn get(&self, index: usize) -> Option<T> {
-        todo!("Not Implemented");
+        if index >= self.size {
+            return None;
+        }
+
+        let mut current = &self.head;
+        let mut current_index = 0;
+
+        while let Some(node) = current {
+            if current_index == index {
+                return Some(node.data.clone());
+            }
+            current = &node.next;
+            current_index += 1;
+        }
+
+        None
     }
     
     pub fn len(&self) -> usize {
