@@ -370,6 +370,22 @@ mod tests {
         assert!(!updated_false);
     }
 
+    #[test]
+    fn test_find() {
+        let mut list = StaticLinkedList::<i32>::new();
+
+        list.insert(10);
+        list.insert(20);
+        list.insert(30);
+
+        // Test finding an element that exists
+        assert!(list.find(20));
+
+        // Test finding an element that does not exist
+        assert!(!list.find(40));
+    }
+
+
 
 
 

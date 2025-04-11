@@ -241,7 +241,16 @@ where
 
    
     pub fn find(&self, data: T) -> bool {
-        todo!("Not Implemented");
+        let mut current = self.head;
+
+        while let Some(index) = current {
+            if self.nodes[index].data == data {
+                return true;
+            }
+            current = self.nodes[index].next;
+        }
+    
+        false
     }
 
    
