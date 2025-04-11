@@ -53,7 +53,11 @@ where
         }
     }
     
-  
+    /// Inserts a new element at the end (tail) of the linked list.
+    ///
+    /// # Arguments
+    ///
+    /// * `data` - The data to insert into the list.
     pub fn insert(&mut self, data: T) {
 
         if self.free_list.is_none() {
