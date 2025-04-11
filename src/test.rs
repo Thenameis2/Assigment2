@@ -154,5 +154,24 @@ mod tests {
         assert_eq!(list.get(2), Some(30));
     }
 
+    #[test]
+    fn dynamic_list_find() {
+        let mut list = DynamicLinkedList::new();
+
+        list.insert(10);
+        list.insert(20);
+        list.insert(30);
+        
+        // Element exists
+        assert!(list.find(10)); 
+        assert!(list.find(20)); 
+        assert!(list.find(30)); 
+
+        // Element does not exist
+        assert!(!list.find(100)); 
+        assert!(!list.find(0)); 
+    }
+
+
 
 }
