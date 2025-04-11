@@ -48,31 +48,71 @@ mod tests {
     }
 
     #[test]
-fn dynamic_list_delete_element() {
-    let mut list = DynamicLinkedList::new();
+    fn dynamic_list_delete_element() {
+        let mut list = DynamicLinkedList::new();
 
-    list.insert(1);
-    list.insert(2);
-    list.insert(3);
-    list.insert(4);
-    // List: 1 -> 2 -> 3 -> 4
+        list.insert(1);
+        list.insert(2);
+        list.insert(3);
+        list.insert(4);
+        // List: 1 -> 2 -> 3 -> 4
 
-    assert_eq!(list.delete_element(3), true);
-    // List after deletion: 1 -> 2 -> 4
-    assert_eq!(list.get(0), Some(1));
-    assert_eq!(list.get(1), Some(2));
-    assert_eq!(list.get(2), Some(4));
-    assert_eq!(list.len(), 3);
+        assert_eq!(list.delete_element(3), true);
+        // List after deletion: 1 -> 2 -> 4
+        assert_eq!(list.get(0), Some(1));
+        assert_eq!(list.get(1), Some(2));
+        assert_eq!(list.get(2), Some(4));
+        assert_eq!(list.len(), 3);
 
-    assert_eq!(list.delete_element(1), true);
-    // List after deletion: 2 -> 4
-    assert_eq!(list.get(0), Some(2));
-    assert_eq!(list.get(1), Some(4));
-    assert_eq!(list.len(), 2);
+        assert_eq!(list.delete_element(1), true);
+        // List after deletion: 2 -> 4
+        assert_eq!(list.get(0), Some(2));
+        assert_eq!(list.get(1), Some(4));
+        assert_eq!(list.len(), 2);
 
-    assert_eq!(list.delete_element(100), false); // Element not in list
-    assert_eq!(list.len(), 2);
-}
+        assert_eq!(list.delete_element(100), false); // Element not in list
+        assert_eq!(list.len(), 2);
+    }
+
+    #[test]
+    fn dynamic_list_delete_at_index() {
+        let mut list = DynamicLinkedList::new();
+
+        list.insert(1);
+        list.insert(2);
+        list.insert(3);
+        list.insert(4);
+        // List: 1 -> 2 -> 3 -> 4
+
+        // Deleting at index 2 (third element)
+        assert!(list.delete_at_index(2));
+        assert_eq!(list.len(), 3);
+        assert_eq!(list.get(0), Some(1));
+        assert_eq!(list.get(1), Some(2));
+        assert_eq!(list.get(2), Some(4));
+
+        // Deleting at index 0 (head)
+        assert!(list.delete_at_index(0));
+        assert_eq!(list.len(), 2);
+        assert_eq!(list.get(0), Some(2));
+        assert_eq!(list.get(1), Some(4));
+
+        // Deleting at an out-of-bounds index
+        assert!(!list.delete_at_index(5));
+        assert_eq!(list.len(), 2);
+
+        // Deleting the last element (index 1)
+        assert!(list.delete_at_index(1));
+        assert_eq!(list.len(), 1);
+        assert_eq!(list.get(0), Some(2));
+
+        // Deleting the only remaining element (index 0)
+        assert!(list.delete_at_index(0));
+        assert_eq!(list.len(), 0);
+        assert!(list.is_empty());
+    }
+
+
 
 
 }
