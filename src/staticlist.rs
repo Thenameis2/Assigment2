@@ -261,7 +261,12 @@ where
         false
     }
 
-   
+   /// Retrieves the element at the specified index in the linked list.
+    ///
+    /// # Arguments
+    ///
+    /// * `index` - The position (0-based) of the element to retrieve.
+    ///
     pub fn get(&self, index: usize) -> Option<T> {
         if index >= self.size {
             return None;  
