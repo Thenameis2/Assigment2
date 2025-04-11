@@ -180,6 +180,16 @@ where
         false 
     }
 
+    /// Updates the element at the specified `index` in the linked list.
+    /// 
+    /// # Parameters
+    /// - `index`: The index of the node to be updated.
+    /// - `data`: The new value that will replace the old data at the specified index.
+    /// 
+    /// # Returns
+    /// - `true` if the element at the specified index was successfully updated.
+    /// - `false` if the index is out of bounds.
+    ///
     pub fn update_element_at_index(&mut self, index: usize, data: T) -> bool {
         if index >= self.size {
             return false; 
