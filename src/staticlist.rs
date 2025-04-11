@@ -88,7 +88,34 @@ where
 
    
     pub fn insert_at_index(&mut self, index: usize, data: T) {
-        todo!("Not Implemented");
+        if self.free_list.is_none() {
+            panic!("StaticLinkedList is full, cannot insert more elements");
+        }
+    
+        if index > self.size {
+            panic!("Index out of bounds");
+        }
+    
+        let new_index = self.free_list.unwrap();
+        self.free_list = self.nodes[new_index].next;
+        self.nodes[new_index].data = data;
+    
+        if index == 0 {
+            // Insert at head
+            self.nodes[new_index].next = self.head;
+            self.head = Some(new_index);
+        } else {
+            // Traverse to node before index
+            let mut current = self.head.unwrap();
+            for _ in 0..index - 1 {
+                current = self.nodes[current].next.unwrap();
+            }
+    
+            self.nodes[new_index].next = self.nodes[current].next;
+            self.nodes[current].next = Some(new_index);
+        }
+    
+        self.size += 1;
     }
 
     
