@@ -211,7 +211,16 @@ where
     }
 
     pub fn find(&self, data: T) -> bool {
-        todo!("Not Implemented");
+        let mut current = &self.head;
+
+        while let Some(node) = current {
+            if node.data == data {
+                return true;
+            }
+            current = &node.next;
+        }
+
+        false
     }
 
     pub fn get(&self, index: usize) -> Option<T> {
