@@ -156,7 +156,17 @@ where
     }
 
     pub fn update_element(&mut self, old_data: T, new_data: T) -> bool {
-        todo!("Not Implemented");
+        let mut current = &mut self.head;
+
+        while let Some(node) = current {
+            if node.data == old_data {
+                node.data = new_data; 
+                return true;
+            }
+            current = &mut node.next;
+        }
+
+        false 
     }
 
     pub fn update_element_at_index(&mut self, index: usize, data: T) -> bool {
